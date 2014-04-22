@@ -5,7 +5,7 @@ library("plyr")
 
 #Uses descriptive activity names to name the activities in the data set
 #loading labels for each activity
-activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", sep = " ")
+activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt", sep = " ")
 names(activity_labels) <- c("move_index","move_label")
 
 #test and train X data are fixed width table
@@ -13,12 +13,12 @@ names(activity_labels) <- c("move_index","move_label")
 width <- c(-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15,-1,15)
 
 ### Test data_set
-data_test_X <- read.fwf("./UCI HAR Dataset/test/X_test.txt", width, skip=0)
+data_test_X <- read.fwf("UCI HAR Dataset/test/X_test.txt", width, skip=0)
 
-data_test_Y <- read.table("./UCI HAR Dataset/test/Y_test.txt", sep = " ")
+data_test_Y <- read.table("UCI HAR Dataset/test/Y_test.txt", sep = " ")
 names(data_test_Y) <- "move_index"
 
-subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt", sep = " ")
+subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt", sep = " ")
 names(subject_test) <- "User_name"
 
 #Lets join the Test data sets
@@ -27,12 +27,12 @@ moves_test <- arrange(join(data_test_Y,activity_labels),move_index)
 moves_test <- cbind(subject_test,moves_test, data_test_X)
 
 ##Train data set, same pattern as for Test data set
-data_train_X <- read.fwf("./UCI HAR Dataset/train/X_train.txt", width, skip=0)
+data_train_X <- read.fwf("UCI HAR Dataset/train/X_train.txt", width, skip=0)
 
-data_train_Y <- read.table("./UCI HAR Dataset/train/Y_train.txt", sep = " ")
+data_train_Y <- read.table("UCI HAR Dataset/train/Y_train.txt", sep = " ")
 names(data_train_Y) <- "move_index"
 
-subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt", sep = " ")
+subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt", sep = " ")
 names(subject_train) <- "User_name"
 
 #Lets join the Train data sets
@@ -79,3 +79,6 @@ temp_angle <- ddply(users_moves, .(users,move), summarize, mean=(mean(angle)))[,
 new_ds <- cbind(temp_mean, temp_std,temp_mad,temp_max,temp_min,temp_sma,temp_energy,temp_iqr,temp_entropy,temp_arCoeff,temp_correlation,temp_maxInds,temp_meanFreq,temp_skewness,temp_kurtosis,temp_bandsEnergy,temp_angle)
 n <- c(names(users_moves)[1],names(users_moves)[3:length(names(users_moves))])
 names(new_ds) <- n
+
+
+write.table(new_ds, file = "tidyDataSet.txt", sep="\t")
