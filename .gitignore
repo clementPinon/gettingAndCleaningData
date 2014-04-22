@@ -1,5 +1,6 @@
 .DS_store
 .Rhistory
 .RData
+tidyDataSet.txt
 Loading_data.R
 *.zip
