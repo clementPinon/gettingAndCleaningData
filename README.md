@@ -14,6 +14,6 @@ You should create one R script called run_analysis.R that does the following.
 The R script named run_analysis.R is in the scripts folder
 In order to load it in R studio, set the root folder as a working directory and run the following command:
 	source("scripts/run_analysis.R", local=T)
-#Merged data sets are stored under "users_moves"
-#Exctrat data set with only mean and std is stored under "extract"
-#tidy data set with mean of each variable for each pair of users & moves is stored under "new_ds"
+Merged data sets are stored under "users_moves"
+Exctrat data set with only mean and std is stored under "extract"
+tidy data set with mean of each variable for each pair of users & moves is stored under "new_ds"
