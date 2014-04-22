@@ -17,7 +17,6 @@ You should create one R script called run_analysis.R that does the following.
 	#Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
 
-The R script named run_analysis.R is in the scripts folder
 
 In order to load it in R studio, set the root folder as a working directory and run the following command:
 	source("run_analysis.R", local=T)
